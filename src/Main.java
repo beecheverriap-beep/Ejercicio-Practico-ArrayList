@@ -9,6 +9,9 @@ public class Main {
         inventario.add("2- inventario");
         inventario.add("3- inventario");
 
+        System.out.println("Lista inventario: " + inventario);
+
+
         System.out.println("Cantidad de cursos: " + inventario.size());
 
 
