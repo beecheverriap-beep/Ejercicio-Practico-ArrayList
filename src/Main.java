@@ -5,44 +5,60 @@ public class Main {
     private static ArrayList<String> inventario = new ArrayList<>();
 
     public static void main(String[] args) {
-
+        // 1. Cargar al menos cinco objetos
         agregarObjeto("Espada de acero");
+        agregarObjeto("Escudo de roble");
         agregarObjeto("Poción de vida");
         agregarObjeto("Mapa del tesoro");
+        agregarObjeto("Anillo de fuerza");
 
-        mostrarInventario();
+        // Mostrar informe inicial
+        mostrarInforme();
 
-        retirarObjeto(1); // Elimina el elemento en el índice 1 ("Poción de vida")
+        // 2. Eliminar uno existente (por nombre u objeto)
+        retirarObjeto("Poción de vida");
 
-        mostrarInventario();
+        // 3. Intentar eliminar uno inexistente sin provocar errores
+        retirarObjeto("Hacha de guerra");
+
+        // 4. Comprobar la existencia de un objeto
+        buscarObjeto("Mapa del tesoro");
+        buscarObjeto("Poción de vida");
+
+        // Mostrar informe actualizado
+        mostrarInforme();
+
+        // 5. Mostrar el tamaño final
+        System.out.println("Tamaño final del inventario: " + inventario.size());
     }
-
 
     public static void agregarObjeto(String objeto) {
         inventario.add(objeto);
-        System.out.println("Se añadió: " + objeto);
+        System.out.println("Añadido: " + objeto);
     }
 
-
-    public static void mostrarInventario() {
-        System.out.println("\n--- ESTADO DEL INVENTARIO (" + inventario.size() + " objetos) ---");
-        if (inventario.isEmpty()) {
-            System.out.println("El inventario está vacío.");
+    public static void retirarObjeto(String objeto) {
+        if (inventario.contains(objeto)) {
+            inventario.remove(objeto);
+            System.out.println("Retirado con éxito: " + objeto);
         } else {
-            for (int i = 0; i < inventario.size(); i++) {
-                System.out.println("Índice " + i + ": " + inventario.get(i));
-            }
+            System.out.println("No se pudo retirar. El objeto '" + objeto + "' no existe en el inventario.");
         }
-
     }
 
-
-    public static void retirarObjeto(int indice) {
-        if (indice >= 0 && indice < inventario.size()) {
-            String removido = inventario.remove(indice);
-            System.out.println("\nSe retiró del inventario: " + removido);
+    public static void buscarObjeto(String objeto) {
+        if (inventario.contains(objeto)) {
+            System.out.println("El objeto '" + objeto + "' SÍ está en el inventario.");
         } else {
-            System.out.println("\nError: El índice " + indice + " no existe en el inventario.");
+            System.out.println("El objeto '" + objeto + "' NO está en el inventario.");
         }
+    }
+
+    public static void mostrarInforme() {
+        System.out.println("\n===== INFORME DE INVENTARIO =====");
+        for (int i = 0; i < inventario.size(); i++) {
+            System.out.println("Posición " + i + ": " + inventario.get(i));
+        }
+        System.out.println("=================================\n");
     }
 }
