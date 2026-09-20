@@ -1,75 +1,45 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
 
+    // ArrayList de inventario
     private static ArrayList<String> inventario = new ArrayList<>();
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        // 1. Carga inicial de al menos 5 objetos
+        // 1. Cargar al menos cinco objetos
         agregarObjeto("Espada de acero");
         agregarObjeto("Escudo de roble");
         agregarObjeto("Poción de vida");
         agregarObjeto("Mapa del tesoro");
         agregarObjeto("Anillo de fuerza");
 
-        // Instancia y prueba de la clase Estudiante requerida por NORA
-        Estudiante alumno = new Estudiante("Juan Pérez", 20, 5.8);
-        System.out.println("\n--- Datos del Estudiante Evaluado ---");
-        alumno.mostrarInformacion();
+        // Mostrar el informe inicial recorriendo con ciclo for
+        mostrarInforme();
 
-        int opcion = 0;
+        // 2. Eliminar un objeto existente
+        retirarObjeto("Poción de vida");
 
-        // Bucle interactivo mediante while
-        while (opcion != 6) {
-            System.out.println("\n=== BOSS FINAL: GESTIÓN DE INVENTARIO ===");
-            System.out.println("1. Mostrar informe de inventario");
-            System.out.println("2. Agregar objeto");
-            System.out.println("3. Retirar objeto existente");
-            System.out.println("4. Intentar retirar objeto inexistente");
-            System.out.println("5. Buscar objeto (contains)");
-            System.out.println("6. Salir y mostrar tamaño final");
-            System.out.print("Seleccione una opción: ");
+        // 3. Intentar eliminar un objeto inexistente sin provocar errores
+        retirarObjeto("Hacha de guerra");
 
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer
+        // 4. Comprobar la existencia de un objeto
+        buscarObjeto("Mapa del tesoro");
+        buscarObjeto("Poción de vida");
 
-            // Control de flujo con if / else if / else
-            if (opcion == 1) {
-                mostrarInforme();
-            } else if (opcion == 2) {
-                System.out.print("Ingrese el nombre del objeto a agregar: ");
-                String nuevoObjeto = scanner.nextLine();
-                agregarObjeto(nuevoObjeto);
-            } else if (opcion == 3) {
-                retirarObjeto("Poción de vida");
-            } else if (opcion == 4) {
-                retirarObjeto("Objeto Inexistente XYZ");
-            } else if (opcion == 5) {
-                System.out.print("Ingrese el nombre del objeto a buscar: ");
-                String busqueda = scanner.nextLine();
-                buscarObjeto(busqueda);
-            } else if (opcion == 6) {
-                System.out.println("\nSaliendo del sistema...");
-            } else {
-                System.out.println("Opción inválida. Intente de nuevo.");
-            }
-        }
+        // Mostrar informe actualizado
+        mostrarInforme();
 
-        // Muestra el tamaño final del ArrayList antes de terminar
+        // 5. Muestra el tamaño final del ArrayList usando size()
         System.out.println("Tamaño final del inventario: " + inventario.size());
-        scanner.close();
     }
 
-    // Método para agregar objetos
+    // Método propio para agregar objetos
     public static void agregarObjeto(String objeto) {
         inventario.add(objeto);
         System.out.println("Añadido: " + objeto);
     }
 
-    // Método para retirar objetos (evita errores consultando contains)
+    // Método propio para retirar objetos de forma segura sin provocar errores
     public static void retirarObjeto(String objeto) {
         if (inventario.contains(objeto)) {
             inventario.remove(objeto);
@@ -79,7 +49,7 @@ public class Main {
         }
     }
 
-    // Método para buscar objeto
+    // Método propio para buscar si un objeto existe
     public static void buscarObjeto(String objeto) {
         if (inventario.contains(objeto)) {
             System.out.println("El objeto '" + objeto + "' SÍ está en el inventario.");
@@ -88,12 +58,12 @@ public class Main {
         }
     }
 
-    // Informe que recorre la lista con un ciclo for tradicional
+    // Método propio para mostrar el informe con ciclo for tradicional, get() y size()
     public static void mostrarInforme() {
         System.out.println("\n===== INFORME DE INVENTARIO =====");
         for (int i = 0; i < inventario.size(); i++) {
             System.out.println("Posición " + i + ": " + inventario.get(i));
         }
-        System.out.println("=================================");
+        System.out.println("=================================\n");
     }
 }
