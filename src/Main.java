@@ -1,26 +1,48 @@
- import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class Main {
+
+    private static ArrayList<String> inventario = new ArrayList<>();
+
     public static void main(String[] args) {
-        ArrayList<String> inventario = new ArrayList<>();
+
+        agregarObjeto("Espada de acero");
+        agregarObjeto("Poción de vida");
+        agregarObjeto("Mapa del tesoro");
+
+        mostrarInventario();
+
+        retirarObjeto(1); // Elimina el elemento en el índice 1 ("Poción de vida")
+
+        mostrarInventario();
+    }
 
 
-        inventario.add("1- inventiario");
-        inventario.add("2- inventario");
-        inventario.add("3- inventario");
+    public static void agregarObjeto(String objeto) {
+        inventario.add(objeto);
+        System.out.println("Se añadió: " + objeto);
+    }
 
 
-        for (int i = 0; i < inventario.size(); i++){
-            System.out.println("Indice: " + i + " - " + inventario.get(i));
+    public static void mostrarInventario() {
+        System.out.println("\n--- ESTADO DEL INVENTARIO (" + inventario.size() + " objetos) ---");
+        if (inventario.isEmpty()) {
+            System.out.println("El inventario está vacío.");
+        } else {
+            for (int i = 0; i < inventario.size(); i++) {
+                System.out.println("Índice " + i + ": " + inventario.get(i));
+            }
         }
-        inventario.set(1, "nuevoValor");
 
-        System.out.println("Actualizacion");
-        System.out.println("Nuevo elemento: " + inventario.get(1));
-        System.out.println("Tamaño del inventario: " + inventario.size());
+    }
 
-        for ( int i = inventario.size() - 1;  i >= 0; i--){
-            System.out.println("Indice" + i +  "-" + inventario.get(i));
+
+    public static void retirarObjeto(int indice) {
+        if (indice >= 0 && indice < inventario.size()) {
+            String removido = inventario.remove(indice);
+            System.out.println("\nSe retiró del inventario: " + removido);
+        } else {
+            System.out.println("\nError: El índice " + indice + " no existe en el inventario.");
         }
     }
 }
