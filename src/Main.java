@@ -1,19 +1,19 @@
-import java.util.ArrayList;
+ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        // Declara un ArrayList de cadenas de texto llamado inventario
         ArrayList<String> inventario = new ArrayList<>();
 
-        // Añade exactamente tres elementos relacionados con una aventura
-        inventario.add("Espada de acero");
-        inventario.add("Poción de vida");
-        inventario.add("Mapa del tesoro");
 
-        // Muestra la lista completa por consola
-        System.out.println("Inventario: " + inventario);
+        inventario.add("1- inventiario");
+        inventario.add("2- inventario");
+        inventario.add("3- inventario");
 
-        // Comprueba que su tamaño sea 3 usando size()
-        System.out.println("Tamaño del inventario: " + inventario.size());
+        System.out.println("Lista inventario: " + inventario);
+
+
+        System.out.println("Cantidad de cursos: " + inventario.size());
+
+
     }
 }
